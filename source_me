@@ -1,0 +1,6 @@
+module swap PrgEnv-cray PrgEnv-gnu
+module load cray-tpsl/16.03.1
+module unload darshan
+module load perftools-base
+module load perftools
+

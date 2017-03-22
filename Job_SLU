@@ -1,0 +1,28 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=32:xe
+#PBS -l walltime=02:00:00
+#PBS -N COMP_LIBSCI_SLU
+#PBS -j oe
+
+. /opt/modules/default/init/bash
+cd $PBS_O_WORKDIR
+source source_me
+module list
+set -v
+export PAT_RT_PERFCTR="PAPI_FP_OPS,PAPI_TOT_INS"
+
+for nc in 32 64 128 256 512 1024 2048 4096 8192; do 
+
+echo running Nc=$nc with 1 core
+date
+export OMP_NUM_THREADS=1
+aprun -n 1 -S 1 -d 1 -ss ./use_SLU+pat ${nc}  >output_${nc}_1core.$PBS_JOBID
+date
+echo running Nc=$nc with 8 threads
+date
+export OMP_NUM_THREADS=8
+aprun -n 1 -S 1 -d 8 -ss ./use_SLU+pat ${nc} >output_${nc}_8threads.$PBS_JOBID
+date
+
+done
+
