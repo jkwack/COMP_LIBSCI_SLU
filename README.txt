@@ -15,7 +15,7 @@ Description: Create a tri-diagonal matrix and then solve it with SuperLU and LAp
 How to build:
 	source source_me	:: Loading required modules
 	make slu		:: generating an executable
-	pat_build -w use_SLU	:: generating an CraPat compatible executable
+	pat_build -w use_SLU	:: generating an CrayPat-compatible executable
 
 How to run:	
 	qsub Job_SLU  
