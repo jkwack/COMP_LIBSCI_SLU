@@ -1,10 +1,3 @@
-
-# Path
-PATH_JK  = .
-
-# Source file
-SOURCE_LAPACK = $(PATH_JK)/SA_LApack.f90
-
 # Compilers
 CC = cc 
 FF = ftn
@@ -18,7 +11,6 @@ slu:
 cleanall::
 	rcsclean -q
 	rm -f *.o
-	rm -f $(PATH_JK)/*.o
-	rm -f $(PATH_JK)/use_SLU
+	rm -f use_SLU
 
 
